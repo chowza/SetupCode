@@ -1,0 +1,29 @@
+# Basic setup for github with develop and staging branches.
+# Replace REPOSITORY_NAME with the repository name on github
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/chowza/REPOSITORY_NAME
+git push -u origin master
+
+git checkout -b develop
+git add .
+git push origin develop
+
+git checkout -b staging
+git add .
+git push origin staging
+
+### This sets up heroku, replace APP_NAME with what yo want to name your app.
+
+heroku login
+heroku keys: add
+heroku apps: create APP_NAME_Staging --remote h_staging
+heroku apps: create APP_NAME --remote h_production
+
+git checkout staging
+git push h_staging staging:master
+
+git checkout master
+git push h_production master:master
