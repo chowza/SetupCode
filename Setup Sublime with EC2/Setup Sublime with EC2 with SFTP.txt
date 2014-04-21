@@ -1,0 +1,31 @@
+1. Download Sublime Text 3 
+2. Download the package manager by tpying ctrl +` in sublime which will open a console
+3. Paste the below code in the console (this code also available on package manager website)
+
+import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+
+4. ctrl+shift+p and type install package
+5. type SFTP and install
+6. File -> SFTP/FTP -> Setup Server and save the file created to: C:\Users\Terence\AppData\Roaming\Sublime Text 3\Packages\User\sftp_servers
+
+Make sure the below changes are made and also note that keypair.ppk is the putty generated private key which you create by downloading puttygen.exe and loading keypair.pem
+    "host": "ec2-50-...etc...us-west-2.compute.amazonaws.com",
+    "user": "ubuntu",
+    "remote_path": "/home/ubuntu",
+    "ssh_key_file": "c:/users/terence/documents/keypair.ppk",
+
+7. Connect to your ec2 instances by typing Browse Server
+
+8. Create a folder locally for the project you want to handle locally. 
+9. Open the folder in sublime and right click -> SFTP -> Map to Remote. Make the following changes and save:
+
+    "host": "ec2-50-...etc...us-west-2.compute.amazonaws.com",
+    "user": "ubuntu",
+    "remote_path": "/home/ubuntu/FOLDER_OF_PROJECT_ON_EC2",
+    "ssh_key_file": "c:/users/terence/documents/keypair.ppk",
+    
+(Note that you actually enter the full path for the project in the remote path)
+
+10. Now in sublime right click on the folder -> SFTP -> Download Folder
+
+11. Make changes locally, then SFTP-> Sync Local -> Remote to upload changes
