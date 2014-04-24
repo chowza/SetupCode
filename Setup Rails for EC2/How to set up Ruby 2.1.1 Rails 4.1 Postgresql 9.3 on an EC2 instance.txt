@@ -89,7 +89,7 @@ sudo -u postgres createuser tchow -s
 #create password
 sudo -u postgres psql
 postgres=#\password tchow
-# then enter password (my password is currently chickendinner)
+# then enter password (And since I've commited this on the net my password is no longer chickendinner)
 # once done entering password you can type \q to get out of the postgresql shell
 
 #like the mysql setup, when you create a new rails app, use rails new myapp -d postgresql and this will auto setup your rails app to have postgresql in development. Also, this implies that it will use the gem pg. Don't forget to configure database.yml to have the correct username and password, also make sure that host: localhost is included in the database.yml for both development and test db.
